@@ -1,31 +1,25 @@
-import java.util.Deque;
-import java.util.LinkedList;
-
-public class UseCase7PalindromeCheckerApp {
+public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
         String input = "madam";
 
-        Deque<Character> deque = new LinkedList<>();
+        boolean result = check(input, 0, input.length() - 1);
 
-        for (char c : input.toCharArray()) {
-            deque.addLast(c);
+        System.out.println("Input : " + input);
+        System.out.println("Is Palindrome? : " + result);
+    }
+
+    private static boolean check(String s, int start, int end) {
+
+        if (start >= end) {
+            return true;
         }
 
-        boolean isPalindrome = true;
-
-        while (deque.size() > 1) {
-            if (deque.removeFirst() != deque.removeLast()) {
-                isPalindrome = false;
-                break;
-            }
+        if (s.charAt(start) != s.charAt(end)) {
+            return false;
         }
 
-        if (isPalindrome) {
-            System.out.println(input + " is a Palindrome");
-        } else {
-            System.out.println(input + " is NOT a Palindrome");
-        }
+        return check(s, start + 1, end - 1);
     }
 }
