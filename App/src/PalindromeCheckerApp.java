@@ -17,6 +17,8 @@ public class UseCase8PalindromeCheckerApp {
         Node head = null;
         Node tail = null;
 
+        String reversed = "";
+
         for (char c : input.toCharArray()) {
             Node newNode = new Node(c);
             if (head == null) {
@@ -59,6 +61,24 @@ public class UseCase8PalindromeCheckerApp {
             }
             firstHalf = firstHalf.next;
             secondHalf = secondHalf.next;
+        // Compare original and reversed string
+        if (input.equals(reversed)) {
+        char[] characters = input.toCharArray();
+
+        int start = 0;
+        int end = characters.length - 1;
+        boolean isPalindrome = true;
+
+        // Two-pointer technique
+        while (start < end) {
+
+            if (characters[start] != characters[end]) {
+                isPalindrome = false;
+                break;
+            }
+
+            start++;
+            end--;
         }
 
         if (isPalindrome) {
@@ -66,4 +86,5 @@ public class UseCase8PalindromeCheckerApp {
         } else {
             System.out.println(input + " is NOT a Palindrome");
         }
+    }
 
