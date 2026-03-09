@@ -11,6 +11,8 @@ public class UseCase6PalindromeCheckerApp {
         Queue<Character> queue = new LinkedList<>();
         Stack<Character> stack = new Stack<>();
 
+        String reversed = "";
+
         for (char c : input.toCharArray()) {
             queue.add(c);
             stack.push(c);
@@ -23,6 +25,26 @@ public class UseCase6PalindromeCheckerApp {
                 isPalindrome = false;
                 break;
             }
+            firstHalf = firstHalf.next;
+            secondHalf = secondHalf.next;
+        // Compare original and reversed string
+        if (input.equals(reversed)) {
+        char[] characters = input.toCharArray();
+
+        int start = 0;
+        int end = characters.length - 1;
+        boolean isPalindrome = true;
+
+        // Two-pointer technique
+        while (start < end) {
+
+            if (characters[start] != characters[end]) {
+                isPalindrome = false;
+                break;
+            }
+
+            start++;
+            end--;
         }
 
         if (isPalindrome) {
@@ -32,3 +54,4 @@ public class UseCase6PalindromeCheckerApp {
         }
     }
 }
+
