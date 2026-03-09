@@ -1,31 +1,36 @@
+import java.util.Stack;
+
 public class PalindromeCheckerApp {
 
     public static void main(String[] args) {
 
-        String input = "madam";
+        String input = "level";
 
-        PalindromeService service = new PalindromeService();
+        long startTime = System.nanoTime();
 
-        boolean result = service.checkPalindrome(input);
+        boolean result = checkUsingStack(input);
+
+        long endTime = System.nanoTime();
+
+        long executionTime = endTime - startTime;
 
         System.out.println("Input : " + input);
         System.out.println("Is Palindrome? : " + result);
+        System.out.println("Execution Time : " + executionTime + " ns");
     }
-}
 
-class PalindromeService {
+    private static boolean checkUsingStack(String input) {
 
-    public boolean checkPalindrome(String input) {
+        Stack<Character> stack = new Stack<>();
 
-        int start = 0;
-        int end = input.length() - 1;
+        for (char c : input.toCharArray()) {
+            stack.push(c);
+        }
 
-        while (start < end) {
-            if (input.charAt(start) != input.charAt(end)) {
+        for (char c : input.toCharArray()) {
+            if (c != stack.pop()) {
                 return false;
             }
-            start++;
-            end--;
         }
 
         return true;
